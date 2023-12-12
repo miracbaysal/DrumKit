@@ -9,13 +9,20 @@ for(var i = 0; i < numberOfDrumButton; i++) {
     var buttonInnerHTML = this.innerHTML;
 
     makeSound(buttonInnerHTML);
+
+    buttonAnimation(buttonInnerHTML);
+
   });
 }
-//Detecting Keyboard Press (Basılan klavye tuşunu algılama)
+// Detecting Keyboard Press (Basılan klavye tuşunu algılama)
 
 
 document.addEventListener("keypress", function(event) {
+
   makeSound(event.key);
+
+  buttonAnimation(event.key);
+
 });
 
 
@@ -63,22 +70,20 @@ function makeSound(key) {
 
 };
 
+// Tıklama animasyonu ekleme
+
+function buttonAnimation(currentKey) {
+  
+  var activeButton = document.querySelector("." + currentKey);
+
+  activeButton.classList.add("pressed");
+
+  // Tıklama animasyonunu 0.1 saniye (100milisaniye) sonra kaldırma
+  
+  setTimeout(function(){
+    activeButton.classList.remove("pressed");
+  }, 100);
+
+}
 
 
-
-/* 
-Yukarıda anonim fonksiyon yazdık. Bu fonksiyonu normal bir fonksiyon 
-olarak yazıp fonksiyonumuzun adını anonim fonksiyonu yazdığımız yere de yazabilirdik.
-Aşağıda olduğu gibi.
-*/ 
-
-/* 
-document.querySelector("button").addEventListener("click", handleClick);
-
-function handleClick() {
-  alert("I got clicked!")
-};
-*/
-
-//var audio = new Audio("sounds/tom-1.mp3")
-//audio.play()
